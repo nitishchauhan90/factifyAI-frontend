@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FactifyAI Feedback</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      padding: 2rem;
+      max-width: 700px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+      color: #2a2a2a;
+    }
+    label {
+      font-weight: bold;
+      margin-top: 1rem;
+      display: block;
+    }
+    textarea, select, input[type="text"] {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      margin-top: 1.5rem;
+      padding: 0.6rem 1.2rem;
+      background-color: #007bff;
+      border: none;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .success {
+      color: green;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Why are you uninstalling FactifyAI?</h1>
+
+  <form id="feedback-form">
+    <label for="reason">Select a reason:</label>
+    <select id="reason" name="reason" required>
+      <option value="">-- Choose a reason --</option>
+      <option value="Privacy concerns">Privacy concerns</option>
+      <option value="Not accurate results">Not accurate results</option>
+      <option value="Slow performance">Slow performance</option>
+      <option value="Too complex to use">Too complex to use</option>
+      <option value="Didn't meet my expectations">Didn't meet my expectations</option>
+      <option value="Other">Other</option>
+    </select>
+
+    <label for="details">More details (optional):</label>
+    <textarea id="details" name="details" rows="5" placeholder="Write your feedback here..."></textarea>
+
+    <button type="submit">Submit Feedback</button>
+    <p id="response" class="success"></p>
+  </form>
+
+  <script>
+  document.getElementById("feedback-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const reason = document.getElementById("reason").value;
+    const details = document.getElementById("details").value;
+
+    const response = await fetch("http://localhost:8000/api/extension/feedback", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ reason, details })
+    });
+
+    if (response.ok) {
+      document.getElementById("response").textContent = "Thank you for your feedback!";
+      
+      // Automatically close the tab after 2 seconds
+      setTimeout(() => {
+        window.close();  // Closes the extension tab
+      }, 2000);
+    } else {
+      document.getElementById("response").textContent = "Failed to send feedback.";
+    }
+  });
+</script>
+</body>
+</html>
