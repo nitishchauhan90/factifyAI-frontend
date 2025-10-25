@@ -9,8 +9,6 @@ DEBUG = False  # Set to False for production
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'factifyai-frontend.onrender.com', 
-    'your-backend-name.onrender.com',
     'factifyai-dn9k.onrender.com',  
 ]
 # BACKEND_API_URL = "http://localhost:8000/api"
@@ -27,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-g^ux=4hr7w$g9jkc!y(sy8a63sywmn))b929k_ciwmsnr&b75)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 
 
 # Application definition
