@@ -4,17 +4,17 @@ from pathlib import Path
 import os
 
 
-DEBUG = False  # Set to False for production
+DEBUG = True  # Set to False for production
 
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     'factifyai-dn9k.onrender.com',  
 ]
-# BACKEND_API_URL = "http://localhost:8000/api"
+BACKEND_API_URL = "http://localhost:8000/api"
 
 # BACKEND_API_URL = "https://divyanshi09-factify-ai-backend.hf.space/api"
-BACKEND_API_URL = "https://nitish90-clarifyai.hf.space/api"
+# BACKEND_API_URL = "https://nitish90-clarifyai.hf.space/api"
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -122,6 +122,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/' 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
